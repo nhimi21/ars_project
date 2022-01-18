@@ -31,7 +31,7 @@ public class Invoice {
     @JoinColumn(name="flight_id")
     private Flight flight;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)//dcfgvbhjnmk,l./
     @JoinTable(
             name = "invoices_users",
             joinColumns = @JoinColumn(name = "invoice_id"),
