@@ -37,10 +37,9 @@ public class Invoice {
             joinColumns = @JoinColumn(name = "invoice_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> userIn;
-
     public Invoice() {
     }
-
+//sfadgfadgaef
     public Invoice(Integer invoice_num, String flight_name, String full_name, LocalDate dep_date, LocalDate arri_date, String num_of_person, String pnr_code, Float total_price, Date createdAt, Date updatedAt, Flight flight, List<User> userIn) {
         this.invoice_num = invoice_num;
         this.flight_name = flight_name;
