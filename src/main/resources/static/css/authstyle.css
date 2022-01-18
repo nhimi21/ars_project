@@ -1,0 +1,171 @@
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+@media only screen and (max-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+body{
+    background-color: #e7e5e4;
+}
+.nav {
+    width: 100%;
+    height: 80px;
+    background-color: #0c97ce;
+    display: inline-flex;
+    align-items: center;
+    justify-content:space-around;
+}
+.nav ul{
+    display: flex;
+    justify-content: space-around;
+}
+.nav ul li{
+    list-style:none;
+}
+.nav ul li a{
+    text-decoration: none;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+}
+.nav ul li a:hover{
+    border-bottom: 2px solid white;
+}
+.nav h1{
+    color: black;
+    font-family: "Brush Script MT", serif;
+}
+.nav h1 span{
+    color: white;
+}
+.box-login{
+    display: flex;
+    justify-content: center;
+}
+.box-1-login{
+    width: auto;
+    height: auto;
+    margin-top: 8%;
+}
+.box-1-login h1{
+    color: #0c97ce;
+    margin: 5px;
+    text-align: center;
+}
+.box-1-login p{
+    color: red;
+    text-align: center;
+}
+.box-1-login .form-control{
+    border: 1px solid #0c97ce;
+    background:transparent;
+    margin: 5px;
+    padding: 8px;
+}
+.box-1-login .btn{
+    background-color: #0c97ce;
+    margin: 5px;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+    border-radius: 15px;
+}
+.box-1-login .btn:hover{
+    font-size: 19px;
+    color:black;
+}
+.box-1-login .check{
+    margin-left: 8px;
+}
+.box-1-login h6{
+    color: #27af27;
+    text-align: center;
+}
+
+/*--------------------------CSS Register-------------------------------------------*/
+
+.box-register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-register-1{
+    width: 395px;
+    height: auto;
+    padding: 10px;
+}
+.box-register-1 h1{
+    text-align: center;
+    color: #0c97ce;
+}
+.box-register-1 p{
+    color: red;
+    text-align: center;
+}
+.box-register-1 table{
+    margin-left: 5px;
+}
+.box-register-1 table .form-control{
+    border: 1px solid #0c97ce;
+    margin: 3px;
+    background: transparent;
+}
+.box-register-1 table label{
+    font-weight: bold;
+    color: #0c97ce;
+}
+.box-register-1 .btn{
+    border-radius: 15px;
+    width: 60%;
+    background-color: #0c97ce;
+    font-weight: bold;
+    color: white;
+    margin-left: 20%;
+}
+.box-register-1 .btn:hover{
+    font-weight: bold;
+    color: black;
+}
+.box-register-1 .login_btn{
+    border-radius: 15px;
+    width: 30%;
+    padding: 5px;
+    background-color: #0c97ce;
+    margin-left: 35%;
+    border: #0c97ce;
+}
+.box-register-1 .login_btn a{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+.box-register-1 .login_btn a:hover{
+    color: black;
+}
+.footer{
+    width: auto;
+    height:40px;
+    background-color: #0c97ce;
+}
+.footer p{
+    text-align: center;
+    color:white;
+    font-weight: bold;
+    padding-top: 7px;
+}

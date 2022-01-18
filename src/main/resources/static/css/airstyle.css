@@ -1,0 +1,91 @@
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+body{
+    background-color: #e7e5e4;
+}
+.nav{
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    background-color: #0c97ce;
+    display: flex;
+    justify-content:space-around;
+}
+.nav ul{
+    display: flex;
+    justify-content: space-around;
+}
+.nav ul li{
+    list-style:none;
+}
+.nav ul li a{
+    text-decoration: none;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+}
+.nav ul li a:hover{
+    border-bottom: 2px solid white;
+}
+.nav h1{
+    color: black;
+    font-family: "Brush Script MT", serif;
+}
+.nav h1 span{
+    color: white;
+}
+.nav .logout{
+    border-radius: 10px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.air{
+    margin-top: 20px;
+    color: #0c97ce
+}
+.air h2{
+    color: #0c97ce;
+}
+.btn{
+    color: white;
+    font-weight: bold;
+}
+.btn a{
+    text-decoration: none;
+    color:white;
+}
+.air-tab{
+    color: #0c97ce;
+    margin-top: 20px;
+}
+.air-tab table{
+    color: #0c97ce;
+}
+.air-tab h2{
+    color: #0c97ce;
+}
+.air-tab table tr th{
+    color: #0c97ce;
+}
+.footer{
+    width: auto;
+    height:auto;
+    background-color: #0c97ce;
+}
+.footer p{
+    text-align: center;
+    color:white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/*-----------------For Edit Airports CSS----------------------------------*/

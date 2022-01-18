@@ -1,0 +1,79 @@
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+body{
+    background: linear-gradient(#e3e9ed, #7da6c0, #e3e9ed);
+}
+.nav{
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    background-color: #0c97ce;
+    display: flex;
+    justify-content:space-around;
+}
+.nav ul{
+    display: flex;
+    justify-content: space-around;
+}
+.nav ul li{
+    list-style:none;
+}
+.nav ul li a{
+    text-decoration: none;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    margin: 10px;
+}
+.nav ul li a:hover{
+    border-bottom: 2px solid white;
+}
+.nav h1{
+    color: black;
+    font-family: "Brush Script MT", serif;
+}
+.nav h1 span{
+    color: white;
+}
+.nav .logout{
+    border-radius: 10px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+}
+.dis{
+    margin:15px 5px 0 5px;
+}
+.dis h1{
+    color: black;
+    margin: 10px;
+    text-align: center;
+    font-family: "Brush Script MT", serif;
+}
+.dis p{
+    color: black;
+    font-weight: 600;
+}
+.img-box{
+    display: flex;
+    justify-content: space-between
+}
+.img-box img{
+    border: 1px solid white;
+}
+.img-box img:hover{
+    border: 1px solid black;
+}
+.footer{
+    width: auto;
+    height:auto;
+    background-color: #0c97ce;
+}
+.footer p{
+    text-align: center;
+    color:black;
+    font-weight: bold;
+    padding: 10px;
+}
