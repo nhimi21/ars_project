@@ -15,7 +15,7 @@ public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private Integer flight_num;
     private String dep_airport_name;
     private String arri_airport_name;
     private String dep_city;
@@ -28,6 +28,7 @@ public class Flight {
     private LocalTime  arri_time;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate arri_date;
+    private String pnr_code;
     private Float ticket_price;
     @Column(updatable=false)
     private Date createdAt;
@@ -37,12 +38,9 @@ public class Flight {
     @JoinColumn(name="user_id")
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "airports_flights",
-            joinColumns = @JoinColumn(name = "flight_id"),
-            inverseJoinColumns = @JoinColumn(name = "airport_id"))
-    private List<Airport> airports;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="airport_id")
+    private Airport airport;
 
     @OneToMany(mappedBy="flight",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Invoice> invoices;
@@ -50,8 +48,15 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(String name, String dep_airport_name, String arri_airport_name, String dep_city, String arri_city, LocalTime dep_time, LocalDate dep_date, LocalTime arri_time, LocalDate arri_date, Float ticket_price, Date createdAt, Date updatedAt, User user, List<Airport> airports, List<Invoice> invoices) {
-        this.name = name;
+    public Flight(Integer flight_num, String dep_airport_name,
+                  String arri_airport_name, String dep_city,
+                  String arri_city, LocalTime dep_time,
+                  LocalDate dep_date, LocalTime arri_time,
+                  LocalDate arri_date, Float ticket_price,
+                  Date createdAt, Date updatedAt, User user,
+                  Airport airport, List<Invoice> invoices,
+                  String pnr_code) {
+        this.flight_num = flight_num;
         this.dep_airport_name = dep_airport_name;
         this.arri_airport_name = arri_airport_name;
         this.dep_city = dep_city;
@@ -64,8 +69,25 @@ public class Flight {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.user = user;
-        this.airports = airports;
+        this.airport = airport;
         this.invoices = invoices;
+        this.pnr_code = pnr_code;
+    }
+
+    public String getPnr_code() {
+        return pnr_code;
+    }
+
+    public void setPnr_code(String pnr_code) {
+        this.pnr_code = pnr_code;
+    }
+
+    public Airport getAirport() {
+        return airport;
+    }
+
+    public void setAirport(Airport airport) {
+        this.airport = airport;
     }
 
     public String getDep_city() {
@@ -92,12 +114,12 @@ public class Flight {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getFlight_num() {
+        return flight_num;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFlight_num(Integer flight_num) {
+        this.flight_num = flight_num;
     }
 
     public String getDep_airport_name() {
@@ -162,14 +184,6 @@ public class Flight {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Airport> getAirports() {
-        return airports;
-    }
-
-    public void setAirports(List<Airport> airports) {
-        this.airports = airports;
     }
 
     public List<Invoice> getInvoices() {
