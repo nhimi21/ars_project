@@ -21,7 +21,6 @@ public class Invoice {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate arri_date;
     private String num_of_person;
-    private String pnr_code;
     private Float total_price;
     @Column(updatable=false)
     private Date createdAt;
@@ -31,28 +30,24 @@ public class Invoice {
     @JoinColumn(name="flight_id")
     private Flight flight;
 
-    @ManyToMany(fetch = FetchType.EAGER)//dcfgvbhjnmk,l./
-    @JoinTable(
-            name = "invoices_users",
-            joinColumns = @JoinColumn(name = "invoice_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> userIn;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User userIn;
+
     public Invoice() {
     }
-//sfadgfadgaef   dwfsdfsdfa
 
-    //sadasd
-
-
-    //comment3
-    public Invoice(Integer invoice_num, String flight_name, String full_name, LocalDate dep_date, LocalDate arri_date, String num_of_person, String pnr_code, Float total_price, Date createdAt, Date updatedAt, Flight flight, List<User> userIn) {
+    public Invoice(Integer invoice_num, String flight_name,
+                   String full_name, LocalDate dep_date,
+                   LocalDate arri_date, String num_of_person,
+                   Float total_price, Date createdAt, Date updatedAt,
+                   Flight flight, User userIn) {
         this.invoice_num = invoice_num;
         this.flight_name = flight_name;
         this.full_name = full_name;
         this.dep_date = dep_date;
         this.arri_date = arri_date;
         this.num_of_person = num_of_person;
-        this.pnr_code = pnr_code;
         this.total_price = total_price;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -60,16 +55,16 @@ public class Invoice {
         this.userIn = userIn;
     }
 
+    public User getUserIn() {
+        return userIn;
+    }
+
+    public void setUserIn(User userIn) {
+        this.userIn = userIn;
+    }
+
     public Float getTotal_price() {
         return total_price;
-    }
-
-    public String getPnr_code() {
-        return pnr_code;
-    }
-
-    public void setPnr_code(String pnr_code) {
-        this.pnr_code = pnr_code;
     }
 
     public void setTotal_price(Float total_price) {
@@ -90,14 +85,6 @@ public class Invoice {
 
     public void setArri_date(LocalDate arri_date) {
         this.arri_date = arri_date;
-    }
-
-    public List<User> getUserIn() {
-        return userIn;
-    }
-
-    public void setUserIn(List<User> userIn) {
-        this.userIn = userIn;
     }
 
     public Flight getFlight() {

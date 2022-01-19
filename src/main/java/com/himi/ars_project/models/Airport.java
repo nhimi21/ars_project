@@ -24,11 +24,7 @@ public class Airport {
     @JoinColumn(name="user_id")
     private User creator;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "airports_flights",
-            joinColumns = @JoinColumn(name = "airport_id"),
-            inverseJoinColumns = @JoinColumn(name = "flight_id"))
+    @OneToMany(mappedBy="airport",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Flight> flights;
 
     public Airport() {

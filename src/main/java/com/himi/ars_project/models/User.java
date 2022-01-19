@@ -43,11 +43,7 @@ public class User {
     @OneToMany(mappedBy="user",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Flight> flightList;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "invoices_users",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "invoice_id"))
+    @OneToMany(mappedBy="userIn",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Invoice> invoiceList;
 
     public User() {
