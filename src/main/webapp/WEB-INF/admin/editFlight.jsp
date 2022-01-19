@@ -19,14 +19,12 @@
                 <li><a href="/admin">Home</a></li>
                 <li><a href="/admin/airport">Airport</a></li>
                 <li><a href="/admin/flight">Flight</a></li>
-                <li><a href="/admin/invoive">Invoice</a></li>
+                <li><a href="/admin/invoice">Invoice</a></li>
                 <li><a><c:out value="${currentUser.firstName}"/></a></li>
                 <li>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="submit" value="Log Out" class="logout"/>
                 </li>
-
-
             </ul>
         </form>
     </div>
@@ -34,12 +32,12 @@
         <div class="add-flight">
             <h2>Update or Delete Flight</h2>
             <hr>
-            <form:form method="POST" action="/admin/flight" modelAttribute="flight">
+            <form:form method="POST" action="/admin/flight/${flight.id}/edit" modelAttribute="flight">
                 <input type="hidden" name="_method" value="put">
                 <div class="form-group">
-                    <form:label path="name">Flight Name:</form:label>
-                    <form:input type="text" class="form-control" path="name" placeholder="Enter flight name"/>
-                    <form:errors path="name"/>
+                    <form:label path="flight_num">Flight Name:</form:label>
+                    <form:input type="text" class="form-control" path="flight_num" placeholder="Enter flight name"/>
+                    <form:errors path="flight_num"/>
                 </div>
                 <br>
                 <div>
@@ -104,6 +102,11 @@
                     <form:label path="arri_time">Arrival Time:</form:label>
                     <form:input type="time" class="form-control" path="arri_time" />
                     <form:errors path="arri_time"/>
+                </div>
+                <div>
+                    <form:label path="pnr_code">PNR Code:</form:label>
+                    <form:input type="float" class="form-control" path="pnr_code" placeholder="Enter price" />
+                    <form:errors path="pnr_code"/>
                 </div>
                 <div>
                     <form:label path="ticket_price">Ticket Price:</form:label>

@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface FlightRepository extends CrudRepository<Flight, Long> {
     List<Flight> findAll();
+//    List<Flight> findAllByDep_airport_nameAndArri_airport_nameAndDep_date(
+//
+//    );
 }

@@ -27,8 +27,42 @@
             </ul>
         </form>
     </div>
-
-    <h1 style=" margin-top: 20px">Welcome <c:out value="${currentUser.firstName}"/> <c:out value="${currentUser.lastName}"/></h1>
+    <div>
+        <h2>Invoice details of clients</h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Invoice No</th>
+                <th>Flight No</th>
+                <th>Dep City</th>
+                <th>Arri City</th>
+                <th>Dep Date</th>
+                <th>Arri Date</th>
+                <th>PNR</th>
+                <th>Ticket Price</th>
+                <th>Number of Person</th>
+                <th>Total price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${ticket}" var="tick">
+                <tr>
+                    <td>${tick.invoice_num}</td>
+                    <td>${tick.flight.flight_num}</td>
+                    <td>${tick.flight.dep_city}</td>
+                    <td>${tick.flight.arri_city}</td>
+                    <td>${tick.flight.dep_date}</td>
+                    <td>${tick.flight.arri_date}</td>
+                    <td>${tick.flight.pnr_code}</td>
+                    <td>${tick.flight.ticket_price}</td>
+                    <td>${tick.num_of_person}</td>
+                    <td>${tick.total_price}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
+
