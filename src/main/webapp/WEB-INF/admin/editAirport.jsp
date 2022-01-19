@@ -19,7 +19,7 @@
                 <li><a href="/admin">Home</a></li>
                 <li><a href="/admin/airport">Airport</a></li>
                 <li><a href="/admin/flight">Flight</a></li>
-                <li><a href="/admin/invoive">Invoice</a></li>
+                <li><a href="/admin/invoice">Invoice</a></li>
                 <li><a><c:out value="${currentUser.firstName}"/></a></li>
                 <li>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

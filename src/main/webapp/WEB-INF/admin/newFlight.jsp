@@ -18,7 +18,7 @@
                 <li><a href="/admin">Home</a></li>
                 <li><a href="/admin/airport">Airport</a></li>
                 <li><a href="/admin/flight">Flight</a></li>
-                <li><a href="/admin/invoive">Invoice</a></li>
+                <li><a href="/admin/invoice">Invoice</a></li>
                 <li><a><c:out value="${currentUser.firstName}"/></a></li>
                 <li>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -34,7 +34,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Flight Name</th>
+                        <th>Flight No</th>
                         <th>Dep Airport</th>
                         <th>Arri Airport</th>
                         <th>Dep City</th>
@@ -44,13 +44,14 @@
                         <th>Arri Date</th>
                         <th>Arri Time</th>
                         <th>Ticket Price</th>
+                        <th>PNR Code</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${flights}" var="flight">
                     <tr>
-                        <td>${flight.name}</td>
+                        <td>${flight.flight_num}</td>
                         <td>${flight.dep_airport_name}</td>
                         <td>${flight.arri_airport_name}</td>
                         <td>${flight.dep_city}</td>
@@ -59,6 +60,7 @@
                         <td>${flight.dep_time}</td>
                         <td>${flight.arri_date}</td>
                         <td>${flight.arri_time}</td>
+                        <td>${flight.pnr_code}</td>
                         <td>$ ${flight.ticket_price}</td>
                         <td><a href="/admin/flight/${flight.id}/edit">Edit</a></td>
                     </tr>
@@ -71,9 +73,9 @@
                 <hr>
                 <form:form method="POST" action="/admin/flight" modelAttribute="flight">
                     <div class="form-group">
-                        <form:label path="name">Flight Name:</form:label>
-                        <form:input type="text" class="form-control" path="name" placeholder="Enter flight name"/>
-                        <form:errors path="name"/>
+                        <form:label path="flight_num">Flight Name:</form:label>
+                        <form:input type="number" class="form-control" path="flight_num" placeholder="Enter flight number"/>
+                        <form:errors path="flight_num"/>
                     </div>
                     <br>
                     <div>
@@ -140,11 +142,17 @@
                         <form:errors path="arri_time"/>
                     </div>
                     <div>
+                        <form:label path="pnr_code">PNR Code:</form:label>
+                        <form:input type="float" class="form-control" path="pnr_code" placeholder="Enter price" />
+                        <form:errors path="pnr_code"/>
+                    </div>
+                    <div>
                         <form:label path="ticket_price">Ticket Price:</form:label>
                         <form:input type="float" class="form-control" path="ticket_price" placeholder="Enter price" />
                         <form:errors path="ticket_price"/>
                     </div>
                     <br>
+<%--                    <form:input type="hidden" path="airport" value="${airId}" />--%>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-info">Create Flight</button>
                 </form:form>

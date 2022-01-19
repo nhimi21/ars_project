@@ -14,7 +14,7 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer invoice_num;
-    private String flight_name;
+    private Integer flight_num;
     private String full_name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dep_date;
@@ -37,13 +37,13 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(Integer invoice_num, String flight_name,
+    public Invoice(Integer invoice_num, Integer flight_num,
                    String full_name, LocalDate dep_date,
                    LocalDate arri_date, String num_of_person,
                    Float total_price, Date createdAt, Date updatedAt,
                    Flight flight, User userIn) {
         this.invoice_num = invoice_num;
-        this.flight_name = flight_name;
+        this.flight_num = flight_num;
         this.full_name = full_name;
         this.dep_date = dep_date;
         this.arri_date = arri_date;
@@ -111,12 +111,12 @@ public class Invoice {
         this.invoice_num = invoice_num;
     }
 
-    public String getFlight_name() {
-        return flight_name;
+    public Integer getFlight_num() {
+        return flight_num;
     }
 
-    public void setFlight_name(String flight_name) {
-        this.flight_name = flight_name;
+    public void setFlight_num(Integer flight_num) {
+        this.flight_num = flight_num;
     }
 
     public String getFull_name() {
