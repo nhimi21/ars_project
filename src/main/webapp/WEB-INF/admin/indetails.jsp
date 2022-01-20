@@ -47,16 +47,16 @@
             <tbody>
             <c:forEach items="${ticket}" var="tick">
                 <tr>
-                    <td>${tick.invoice_num}</td>
-                    <td>${tick.flight.flight_num}</td>
-                    <td>${tick.flight.dep_city}</td>
-                    <td>${tick.flight.arri_city}</td>
-                    <td>${tick.flight.dep_date}</td>
-                    <td>${tick.flight.arri_date}</td>
-                    <td>${tick.flight.pnr_code}</td>
-                    <td>${tick.flight.ticket_price}</td>
-                    <td>${tick.num_of_person}</td>
-                    <td>${tick.total_price}</td>
+                    <td>${tick.ticketNumber}</td>
+                    <td>${tick.flight.flightNumber}</td>
+                    <td>${tick.flight.departureCity}</td>
+                    <td>${tick.flight.arrivalCity}</td>
+                    <td>${tick.flight.departureDate}</td>
+                    <td>${tick.flight.arrivalDate}</td>
+                    <td>${tick.flight.pnrCode}</td>
+                    <td>${tick.flight.ticketPrice}</td>
+                    <td>${tick.numOfPerson}</td>
+                    <td>${tick.totalPrice}</td>
                 </tr>
             </c:forEach>
             </tbody>

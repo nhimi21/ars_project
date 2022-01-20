@@ -26,7 +26,7 @@
         </form>
     </div>
     <div class="tab-flight col-12">
-        <h2>Flights List</h2>
+        <h3>Searched Resultant</h3>
         <hr>
         <table class="table table-hover">
             <thead>
@@ -42,6 +42,7 @@
                 <th>Arri Time</th>
                 <th>Ticket Price</th>
                 <th>PNR Code</th>
+                <th>Booking</th>
             </tr>
             </thead>
             <tbody>
@@ -58,22 +59,11 @@
                     <td>${searc.arrivalTime}</td>
                     <td>${searc.pnrCode}</td>
                     <td>$ ${searc.ticketPrice}</td>
+                    <th><button type="button" class="btn btn-danger"><a href="/user/book" style="text-decoration: none; color: white; font-weight: bold">Book</a></button></th>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-    </div>
-    <div class="dis">
-        <fieldset>
-            <legend>1-What is the Airline Industry?</legend>
-            <p>
-                The airline industry encompasses a wide range of businesses, called airlines, which offer air transport services for paying customers or business partners.
-                These air transport services are provided for both human travellers and cargo, and are most commonly offered via jets, although some airlines also use helicopters.
-                Airlines may offer scheduled and/or chartered services and the airline industry forms a key part of the wider travel industry,
-                providing customers with the ability to purchase seats on flights and travel to different parts of the world.
-                The airline industry offers a variety of career paths, including pilots, flight attendants and ground crew.
-            </p>
-        </fieldset>
     </div>
     <div class="img-box col-">
         <img src="${pageContext.request.contextPath}/img/berlin.jpg" alt="berlin" width="240" height="200">

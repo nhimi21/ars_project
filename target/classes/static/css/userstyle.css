@@ -66,6 +66,16 @@ body{
 .img-box img:hover{
     border: 1px solid black;
 }
+.social-media{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 10px 5px;
+    padding: 15px 15px 5px;
+}
+.social-media svg {
+    margin: 5px;
+}
 .footer{
     width: auto;
     height:auto;
