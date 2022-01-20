@@ -1,5 +1,9 @@
 package com.himi.ars_project.controllers;
 
+import com.himi.ars_project.models.Airport;
+import com.himi.ars_project.models.Flight;
+import com.himi.ars_project.models.Invoice;
+import com.himi.ars_project.models.User;
 import com.himi.ars_project.services.FlightService;
 import com.himi.ars_project.services.InvoiceService;
 import com.himi.ars_project.services.UserService;
@@ -7,11 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -48,7 +53,22 @@ public class ClientController {
         return "/user/searched";
     }
     @GetMapping("/user/book")
-    public String ticket(Model model){
+    public String ticket(@ModelAttribute("invoice")Invoice invoice,Principal principal ,Model model){
+        String username = principal.getName();
+        model.addAttribute("currentUser", userService.findByUsername(username));
+        model.addAttribute("allIn", invoiceService.findAllInvoice());
         return "/user/book";
+    }
+    @PostMapping("/user/book")
+    public String newFlight(@Valid @ModelAttribute("invoice")Invoice invoice,Principal principal ,Model model, BindingResult result, HttpSession session) {
+        String username = principal.getName();
+        User user = userService.findByUsername(username);
+        if (result.hasErrors()){
+            return "/user/book";
+        } else {
+            invoice.setUserIn(user);
+            invoiceService.createInvoice(invoice);
+            return "redirect:/user";
+        }
     }
 }
