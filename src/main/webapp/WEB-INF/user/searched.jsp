@@ -16,7 +16,7 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/user">Search</a></li>
-                <li><a href="/user/detais">Detais</a></li>
+                <li><a href="/user/details">Details</a></li>
                 <li><a><c:out value="${currentUser.firstName}"/></a></li>
                 <li>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -25,65 +25,76 @@
             </ul>
         </form>
     </div>
+    <br>
     <div class="tab-flight col-12">
-        <h2>Flights List</h2>
+        <h4>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+            </svg>
+            Searched Resultant:  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"></path>
+            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+        </svg> ${from}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+            ${to}
+        </h4>
+<%--        <c:choose>--%>
+<%--            <c:when test="${from && to != null}">--%>
+<%--             Searched Resultant: ${from} to ${to}--%>
+<%--            </c:when>--%>
+<%--            <:c:otherwise>--%>
+<%--               Searched Resultant: nothing--%>
+<%--            </:c:otherwise>--%>
+<%--        </c:choose>--%>
         <hr>
-        <table class="table table-hover">
-            <thead>
+        <table class="table table-bordered" >
+            <thead >
             <tr>
-                <th>Dep Airport</th>
-                <th>Arri Airport</th>
-                <th>Dep City</th>
-                <th>Arri City</th>
-                <th>Dep Date</th>
-                <th>Dep Time</th>
-                <th>Arri Date</th>
-                <th>Arri Time</th>
-                <th>Ticket Price</th>
-                <th>PNR Code</th>
+                <th  scope="col">Flight</th>
+                <th  scope="col">From</th>
+                <th  scope="col">To</th>
+                <th  scope="col">Price</th>
+                <th  scope="col">Booking</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${search}" var="searc">
                 <tr>
-                    <td>${searc.departureAirportName}</td>
-                    <td>${searc.arrivalAirportName}</td>
-                    <td>${searc.departureCity}</td>
-                    <td>${searc.arrivalCity}</td>
-                    <td>${searc.departureDate}</td>
-                    <td>${searc.departureTime}</td>
-                    <td>${searc.arrivalDate}</td>
-                    <td>${searc.arrivalTime}</td>
-                    <td>${searc.pnrCode}</td>
+                    <td>
+                        <p>${searc.pnrCode}</p>
+                         <span>Operated By</span> ${searc.departureAirportName}</td>
+                    <td>
+                        <p>${searc.departureTime}</p>
+                        <span>${searc.departureCity}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"></path>
+                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"></path>
+                        </svg> ${searc.departureDate}
+                        <p>${searc.departureAirportName}</p>
+                    </td>
+                    <td>
+                          <p>${searc.arrivalTime}</p>
+                        <span>${searc.arrivalCity}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"></path>
+                            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"></path>
+                        </svg> ${searc.arrivalDate}
+
+                        <p>${searc.arrivalAirportName}</p>
+                    </td>
                     <td>$ ${searc.ticketPrice}</td>
+                    <th><button type="button" class="btn btn-danger"><a href="/user/book" style="text-decoration: none; color: white; font-weight: bold">Book</a></button></th>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
+    <br>
     <div class="dis">
         <fieldset>
-            <legend>1-What is the Airline Industry?</legend>
-            <p>
-                The airline industry encompasses a wide range of businesses, called airlines, which offer air transport services for paying customers or business partners.
-                These air transport services are provided for both human travellers and cargo, and are most commonly offered via jets, although some airlines also use helicopters.
-                Airlines may offer scheduled and/or chartered services and the airline industry forms a key part of the wider travel industry,
-                providing customers with the ability to purchase seats on flights and travel to different parts of the world.
-                The airline industry offers a variety of career paths, including pilots, flight attendants and ground crew.
-            </p>
-        </fieldset>
-    </div>
-    <div class="img-box col-">
-        <img src="${pageContext.request.contextPath}/img/berlin.jpg" alt="berlin" width="240" height="200">
-        <img src="${pageContext.request.contextPath}/img/paris.jpg" alt="paris" width="240" height="200">
-        <img src="${pageContext.request.contextPath}/img/viena.jpg" alt="viena" width="240" height="200">
-        <img src="${pageContext.request.contextPath}/img/london.jpg" alt="london" width="240" height="200">
-        <img src="${pageContext.request.contextPath}/img/istam.jpg" alt="istam" width="240" height="200">
-    </div>
-    <hr>
-    <div class="dis">
-        <fieldset>
-            <legend>2-How can I Book Airline Tickets Online?</legend>
+            <legend>How can I Book Airline Tickets Online?</legend>
             <p>
                 Compare plane ticket prices at a glance from a large inventory of carriers on Expedia.
                 You can get cheap flights by staying flexible with travel dates,
@@ -98,7 +109,14 @@
             </p>
         </fieldset>
     </div>
-    <br>
+    <div class="img-box col-">
+        <img src="${pageContext.request.contextPath}/img/berlin.jpg" alt="berlin" width="240" height="200">
+        <img src="${pageContext.request.contextPath}/img/paris.jpg" alt="paris" width="240" height="200">
+        <img src="${pageContext.request.contextPath}/img/viena.jpg" alt="viena" width="240" height="200">
+        <img src="${pageContext.request.contextPath}/img/london.jpg" alt="london" width="240" height="200">
+        <img src="${pageContext.request.contextPath}/img/istam.jpg" alt="istam" width="240" height="200">
+    </div>
+    <hr>
     <div class="social-media">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
             <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>

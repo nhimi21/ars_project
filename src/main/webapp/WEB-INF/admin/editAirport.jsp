@@ -35,9 +35,9 @@
             <form:form method="POST" action="/admin/${airport.id}/edit" modelAttribute="airport">
                 <input type="hidden" name="_method" value="put">
                 <div class="form-group">
-                    <form:label path="port_code">Airport Code:</form:label>
-                    <form:input type="number" path="port_code" cssClass="form-control" placeholder="Enter Airport Code"/>
-                    <form:errors path="port_code"/>
+                    <form:label path="airportCode">Airport Code:</form:label>
+                    <form:input type="number" path="airportCode" cssClass="form-control" placeholder="Enter Airport Code"/>
+                    <form:errors path="airportCode"/>
                 </div>
                 <div class="form-group">
                     <form:label path="name">Name:</form:label>

@@ -5,6 +5,8 @@ import com.himi.ars_project.repositories.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,4 +30,12 @@ public class FlightService {
         }
         this.flightRepository.deleteById(id);
     }
+    public List<Flight> allSearches(
+                                    String departureCity,
+                                    String arrivalCity,
+                                    Date departureDate,
+                                    Date arrivalDate){
+    return this.flightRepository.findAllByDepartureCityAndArrivalCityAndDepartureDateAndArrivalDate(departureCity, arrivalCity, departureDate, arrivalDate);
+    }
 }
+

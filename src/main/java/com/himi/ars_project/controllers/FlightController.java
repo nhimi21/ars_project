@@ -35,17 +35,18 @@ public class FlightController {
         return "/admin/newFlight";
     }
     @PostMapping("/admin/flight")
-    public String newFlight(@Valid @ModelAttribute("flight")Flight flight, BindingResult result,Principal principal, HttpSession session) {
+    public String newFlight(@Valid @ModelAttribute("flight")Flight flight, BindingResult result,Principal principal, HttpSession session,Model model) {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         if (result.hasErrors()){
             return "/admin/newFlight";
+        } else {
+            Airport airport = this.airportService.findAirportById((Long) session.getAttribute("airportId"));
+            flight.setAirport(airport);
+            flight.setUser(user);
+            this.flightService.createFlight(flight);
+            return "redirect:/admin/flight";
         }
-        flight.setUser(user);
-//        Airport airId = airportService.findAirportById((Long)session.getAttribute("airportID"));
-//        flight.setAirport(airId);
-        this.flightService.createFlight(flight);
-        return "redirect:/admin/flight";
     }
     @GetMapping("/admin/flight/{id}/edit")
     public String editFlight(@PathVariable("id") Long id, Model model,Principal principal) {
