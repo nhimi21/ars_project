@@ -1,7 +1,5 @@
 package com.himi.ars_project.controllers;
 
-import com.himi.ars_project.models.Airport;
-import com.himi.ars_project.models.Flight;
 import com.himi.ars_project.models.Invoice;
 import com.himi.ars_project.models.User;
 import com.himi.ars_project.services.FlightService;
@@ -19,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Controller

@@ -41,8 +41,8 @@ public class FlightController {
         if (result.hasErrors()){
             return "/admin/newFlight";
         } else {
-            Airport airport = this.airportService.findAirportById((Long) session.getAttribute("airportId"));
-            flight.setAirport(airport);
+//            Airport airport = this.airportService.findAirportById((Long) session.getAttribute("airportId"));
+//            flight.setAirport(airport);
             flight.setUser(user);
             this.flightService.createFlight(flight);
             return "redirect:/admin/flight";
