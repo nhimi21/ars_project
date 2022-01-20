@@ -25,8 +25,11 @@
             </ul>
         </form>
     </div>
-    <div class="dis">
+    <div class="wel">
         <h1>Welcome to Airline Reservation System</h1>
+    </div>
+    <div class="dis">
+
         <fieldset>
             <legend>1-What is the Airline Industry?</legend>
             <p>

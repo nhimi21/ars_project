@@ -31,7 +31,6 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>Flight No</th>
                 <th>Dep Airport</th>
                 <th>Arri Airport</th>
                 <th>Dep City</th>
@@ -47,7 +46,6 @@
             <tbody>
             <c:forEach items="${search}" var="searc">
                 <tr>
-                    <td>${searc.flightNumber}</td>
                     <td>${searc.departureAirportName}</td>
                     <td>${searc.arrivalAirportName}</td>
                     <td>${searc.departureCity}</td>

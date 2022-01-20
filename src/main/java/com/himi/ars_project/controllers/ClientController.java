@@ -27,10 +27,10 @@ public class ClientController {
     private FlightService flightService;
 
     @InitBinder
-    public void initBinder(WebDataBinder binder){
-        binder.registerCustomEditor(       Date.class,
-                new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));
     }
+
     @GetMapping("/user/search")
     public String searched(
             @RequestParam("departureCity") String departureCity,
@@ -38,18 +38,17 @@ public class ClientController {
             @RequestParam("departureDate") Date departureDate,
             @RequestParam("arrivalDate") Date arrivalDate,
             Model model, Principal principal
-            ){
-    model.addAttribute("search", this.flightService.allSearches(departureCity, arrivalCity, departureDate, arrivalDate ));
-    model.addAttribute("all",departureCity);
-    model.addAttribute("all",arrivalCity);
-    model.addAttribute("all",departureDate);
-    model.addAttribute("all",arrivalDate);
-    String username = principal.getName();
-    model.addAttribute("currentUser", userService.findByUsername(username));
-    return "/user/searched";
+    ) {
+        model.addAttribute("search", this.flightService.allSearches(departureCity, arrivalCity, departureDate, arrivalDate));
+        model.addAttribute("from", departureCity);
+        model.addAttribute("to", arrivalCity);
+        model.addAttribute("date",departureDate);
+        String username = principal.getName();
+        model.addAttribute("currentUser", userService.findByUsername(username));
+        return "/user/searched";
     }
-    //            @RequestParam("departureAirportName") String departureAirportName,
-//            @RequestParam("arrivalAirportName") String arrivalAirportName,
-//     departureAirportName ,
-//            arrivalAirportName,
+    @GetMapping("/user/book")
+    public String ticket(Model model){
+        return "/user/book";
+    }
 }
