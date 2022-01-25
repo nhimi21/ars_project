@@ -18,15 +18,13 @@
           <li><a href="/login">Log in</a></li>
         </ul>
     </div>
-  <div class="box-login">
-    <div class="box-1-login">
-
+  <div class="box-login col-12">
+    <div class="box-1-login col-12">
       <h1>Log In</h1>
       <hr>
       <c:if test="${errorMessage != null}">
         <p><c:out value="${errorMessage}"/></p>
       </c:if>
-
       <form method="post" action="/login">
         <table>
           <tr>

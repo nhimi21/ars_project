@@ -78,4 +78,13 @@ public class UserController {
         model.addAttribute("currentUser", userService.findByUsername(username));
         return "/user/ticket";
     }
+//    @GetMapping("/")
+//    public String correctUser(@Re("user") User user, Model model, HttpSession session, Principal principal){
+//        String username = principal.getName();
+//        model.addAttribute("currentUser", userService.findByUsername(username));
+//        boolean isCorrectUser = userService.findUserRoleAdmin(user);
+//        if (userService.findUserRoleAdmin(user)){
+//
+//        }
+//    }
 }

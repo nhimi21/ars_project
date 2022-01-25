@@ -72,7 +72,7 @@
         </div>
     </div>
     <br>
-    <div class="img-box col-">
+    <div class="img-box">
         <div>
             <h2>Berlin, Germany</h2>
             <img src="${pageContext.request.contextPath}/img/berlin.jpg" alt="berlin" >
