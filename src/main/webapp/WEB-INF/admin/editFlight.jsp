@@ -19,14 +19,12 @@
                 <li><a href="/admin">Home</a></li>
                 <li><a href="/admin/airport">Airport</a></li>
                 <li><a href="/admin/flight">Flight</a></li>
-                <li><a href="/admin/invoive">Invoice</a></li>
+                <li><a href="/admin/invoice">Invoice</a></li>
                 <li><a><c:out value="${currentUser.firstName}"/></a></li>
                 <li>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="submit" value="Log Out" class="logout"/>
                 </li>
-
-
             </ul>
         </form>
     </div>
@@ -35,17 +33,16 @@
             <h2>Update or Delete Flight</h2>
             <hr>
             <form:form method="POST" action="/admin/flight" modelAttribute="flight">
-                <input type="hidden" name="_method" value="put">
                 <div class="form-group">
-                    <form:label path="name">Flight Name:</form:label>
-                    <form:input type="text" class="form-control" path="name" placeholder="Enter flight name"/>
-                    <form:errors path="name"/>
+                    <form:label path="flightNumber">Flight Number:</form:label>
+                    <form:input type="number" class="form-control" path="flightNumber" placeholder="Enter flight number"/>
+                    <form:errors path="flightNumber"/>
                 </div>
                 <br>
                 <div>
                     <label>Departure Airport:</label>
                     <label>
-                        <select name="dep_airport_name"  class="form-control" >
+                        <select name="departureAirportName"  class="form-control" >
                             <c:forEach items="${airport}" var="air">
                                 <option value="${air.name}">
                                         ${air.name}
@@ -55,7 +52,7 @@
                     </label>
                     <label>Arrival  Airport:</label>
                     <label>
-                        <select name="arri_airport_name"  class="form-control">
+                        <select name="arrivalAirportName"  class="form-control">
                             <c:forEach items="${airport}" var="air">
                                 <option value="${air.name}">
                                         ${air.name}
@@ -65,7 +62,7 @@
                     </label>
                     <label>Departure City: </label>
                     <label>
-                        <select name="dep_city"  class="form-control">
+                        <select name="departureCity"  class="form-control">
                             <c:forEach items="${airport}" var="air">
                                 <option value="${air.city}">
                                         ${air.city}
@@ -75,7 +72,7 @@
                     </label>
                     <label>Arrival City: </label>
                     <label>
-                        <select name="arri_city"  class="form-control">
+                        <select name="arrivalCity"  class="form-control">
                             <c:forEach items="${airport}" var="air">
                                 <option value="${air.city}">
                                         ${air.city}
@@ -86,33 +83,39 @@
                 </div>
                 <br>
                 <div>
-                    <form:label path="dep_date">Departure Date:</form:label>
-                    <form:input type="date" class="form-control" path="dep_date" />
-                    <form:errors path="dep_date"/>
+                    <form:label path="departureDate">Departure Date:</form:label>
+                    <form:input type="date" class="form-control" path="departureDate" />
+                    <form:errors path="departureDate"/>
                 </div>
                 <div>
-                    <form:label path="dep_time">Departure Time:</form:label>
-                    <form:input type="time" class="form-control" path="dep_time" />
-                    <form:errors path="dep_time"/>
+                    <form:label path="departureTime">Departure Time:</form:label>
+                    <form:input type="time" class="form-control" path="departureTime" />
+                    <form:errors path="departureTime"/>
                 </div>
                 <div>
-                    <form:label path="arri_date">Arrival Date:</form:label>
-                    <form:input type="date" class="form-control" path="arri_date" />
-                    <form:errors path="arri_date"/>
+                    <form:label path="arrivalDate">Arrival Date:</form:label>
+                    <form:input type="date" class="form-control" path="arrivalDate" />
+                    <form:errors path="arrivalDate"/>
                 </div>
                 <div>
-                    <form:label path="arri_time">Arrival Time:</form:label>
-                    <form:input type="time" class="form-control" path="arri_time" />
-                    <form:errors path="arri_time"/>
+                    <form:label path="arrivalTime">Arrival Time:</form:label>
+                    <form:input type="time" class="form-control" path="arrivalTime" />
+                    <form:errors path="arrivalTime"/>
                 </div>
                 <div>
-                    <form:label path="ticket_price">Ticket Price:</form:label>
-                    <form:input type="float" class="form-control" path="ticket_price" placeholder="Enter price" />
-                    <form:errors path="ticket_price"/>
+                    <form:label path="pnrCode">PNR Code:</form:label>
+                    <form:input type="float" class="form-control" path="pnrCode" placeholder="Enter price" />
+                    <form:errors path="pnrCode"/>
+                </div>
+                <div>
+                    <form:label path="ticketPrice">Ticket Price:</form:label>
+                    <form:input type="float" class="form-control" path="ticketPrice" placeholder="Enter price" />
+                    <form:errors path="ticketPrice"/>
                 </div>
                 <br>
+                <%--                    <form:input type="hidden" path="airport" value="${airId}" />--%>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <button type="submit" class="btn btn-info">Edit Flight</button>
+                <button type="submit" class="btn btn-info">Create Flight</button>
                 <button type="button" class="btn btn-info"><a href="/admin/flight">Back</a></button>
             </form:form>
             <form action="/admin/flight/${flight.id}/delete" method="post">

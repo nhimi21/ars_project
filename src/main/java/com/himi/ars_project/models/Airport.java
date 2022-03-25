@@ -11,7 +11,7 @@ public class Airport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer port_code;
+    private Integer airportCode;
     private String name;
     private String state;
     private String city;
@@ -24,23 +24,19 @@ public class Airport {
     @JoinColumn(name="user_id")
     private User creator;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "airports_flights",
-            joinColumns = @JoinColumn(name = "airport_id"),
-            inverseJoinColumns = @JoinColumn(name = "flight_id"))
+    @OneToMany(mappedBy="airport",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Flight> flights;
 
     public Airport() {
     }
 
-    public Airport(Long id, Integer port_code,
+    public Airport(Long id, Integer airportCode,
                    String name, String state,
                    String city, String address,
                    Date createdAt, Date updatedAt,
                    User creator, List<Flight> flights) {
         this.id = id;
-        this.port_code = port_code;
+        this.airportCode = airportCode;
         this.name = name;
         this.state = state;
         this.city = city;
@@ -75,12 +71,12 @@ public class Airport {
         this.id = id;
     }
 
-    public Integer getPort_code() {
-        return port_code;
+    public Integer getAirportCode() {
+        return airportCode;
     }
 
-    public void setPort_code(Integer port_code) {
-        this.port_code = port_code;
+    public void setAirportCode(Integer airportCode) {
+        this.airportCode = airportCode;
     }
 
     public String getName() {

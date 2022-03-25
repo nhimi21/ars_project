@@ -18,7 +18,7 @@
                 <li><a href="/admin">Home</a></li>
                 <li><a href="/admin/airport">Airport</a></li>
                 <li><a href="/admin/flight">Flight</a></li>
-                <li><a href="/admin/invoive">Invoice</a></li>
+                <li><a href="/admin/invoice">Invoice</a></li>
                 <li>
                     <a><c:out value="${currentUser.firstName}"/></a></li>
                 <li>
@@ -45,7 +45,7 @@
             <tbody>
             <c:forEach items="${airports}" var="airport">
                 <tr>
-                    <td>${airport.port_code}</td>
+                    <td>${airport.airportCode}</td>
                     <td>${airport.name}</td>
                     <td>${airport.state}</td>
                     <td>${airport.city}</td>
@@ -65,9 +65,9 @@
             <hr>
             <form:form method="POST" action="/admin/airport" modelAttribute="airport">
                 <div class="form-group">
-                    <form:label path="port_code">Airport Code:</form:label>
-                    <form:input type="number" path="port_code" cssClass="form-control" placeholder="Enter Airport Code"/>
-                    <form:errors path="port_code"/>
+                    <form:label path="airportCode">Airport Code:</form:label>
+                    <form:input type="number" path="airportCode" cssClass="form-control" placeholder="Enter Airport Code"/>
+                    <form:errors path="airportCode"/>
                 </div>
                 <div class="form-group">
                     <form:label path="name">Name:</form:label>

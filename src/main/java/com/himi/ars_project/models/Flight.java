@@ -3,7 +3,6 @@ package com.himi.ars_project.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -15,20 +14,23 @@ public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String dep_airport_name;
-    private String arri_airport_name;
-    private String dep_city;
-    private String arri_city;
+    private Integer flightNumber;
+    private String departureAirportName;
+    private String arrivalAirportName;
+    private String departureCity;
+    private String arrivalCity;
     @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime dep_time;
+    private LocalTime departureTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dep_date;
+    @Temporal(TemporalType.DATE)
+    private Date departureDate;
     @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime  arri_time;
+    private LocalTime arrivalTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate arri_date;
-    private Float ticket_price;
+    @Temporal(TemporalType.DATE)
+    private Date arrivalDate;
+    private String pnrCode;
+    private Float ticketPrice;
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
@@ -37,12 +39,9 @@ public class Flight {
     @JoinColumn(name="user_id")
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "airports_flights",
-            joinColumns = @JoinColumn(name = "flight_id"),
-            inverseJoinColumns = @JoinColumn(name = "airport_id"))
-    private List<Airport> airports;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="airport_id")
+    private Airport airport;
 
     @OneToMany(mappedBy="flight",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Invoice> invoices;
@@ -50,38 +49,32 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(String name, String dep_airport_name, String arri_airport_name, String dep_city, String arri_city, LocalTime dep_time, LocalDate dep_date, LocalTime arri_time, LocalDate arri_date, Float ticket_price, Date createdAt, Date updatedAt, User user, List<Airport> airports, List<Invoice> invoices) {
-        this.name = name;
-        this.dep_airport_name = dep_airport_name;
-        this.arri_airport_name = arri_airport_name;
-        this.dep_city = dep_city;
-        this.arri_city = arri_city;
-        this.dep_time = dep_time;
-        this.dep_date = dep_date;
-        this.arri_time = arri_time;
-        this.arri_date = arri_date;
-        this.ticket_price = ticket_price;
+    public Flight(Long id,Integer flightNumber,
+                  String departureAirportName,
+                  String arrivalAirportName, String departureCity,
+                  String arrivalCity, LocalTime departureTime,
+                  Date departureDate, LocalTime arrivalTime,
+                  Date arrivalDate, String pnrCode,
+                  Float ticketPrice, Date createdAt,
+                  Date updatedAt, User user, Airport airport,
+                  List<Invoice> invoices) {
+        this.id = id;
+        this.flightNumber = flightNumber;
+        this.departureAirportName = departureAirportName;
+        this.arrivalAirportName = arrivalAirportName;
+        this.departureCity = departureCity;
+        this.arrivalCity = arrivalCity;
+        this.departureTime = departureTime;
+        this.departureDate = departureDate;
+        this.arrivalTime = arrivalTime;
+        this.arrivalDate = arrivalDate;
+        this.pnrCode = pnrCode;
+        this.ticketPrice = ticketPrice;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.user = user;
-        this.airports = airports;
+        this.airport = airport;
         this.invoices = invoices;
-    }
-
-    public String getDep_city() {
-        return dep_city;
-    }
-
-    public void setDep_city(String dep_city) {
-        this.dep_city = dep_city;
-    }
-
-    public String getArri_city() {
-        return arri_city;
-    }
-
-    public void setArri_city(String arri_city) {
-        this.arri_city = arri_city;
     }
 
     public Long getId() {
@@ -92,68 +85,92 @@ public class Flight {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getFlightNumber() {
+        return flightNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFlightNumber(Integer flightNumber) {
+        this.flightNumber = flightNumber;
     }
 
-    public String getDep_airport_name() {
-        return dep_airport_name;
+    public String getDepartureAirportName() {
+        return departureAirportName;
     }
 
-    public void setDep_airport_name(String dep_airport_name) {
-        this.dep_airport_name = dep_airport_name;
+    public void setDepartureAirportName(String departureAirportName) {
+        this.departureAirportName = departureAirportName;
     }
 
-    public String getArri_airport_name() {
-        return arri_airport_name;
+    public String getArrivalAirportName() {
+        return arrivalAirportName;
     }
 
-    public LocalTime getDep_time() {
-        return dep_time;
+    public void setArrivalAirportName(String arrivalAirportName) {
+        this.arrivalAirportName = arrivalAirportName;
     }
 
-    public void setDep_time(LocalTime dep_time) {
-        this.dep_time = dep_time;
+    public String getDepartureCity() {
+        return departureCity;
     }
 
-    public LocalTime getArri_time() {
-        return arri_time;
+    public void setDepartureCity(String departureCity) {
+        this.departureCity = departureCity;
     }
 
-    public void setArri_time(LocalTime arri_time) {
-        this.arri_time = arri_time;
+    public String getArrivalCity() {
+        return arrivalCity;
     }
 
-    public void setArri_airport_name(String arri_airport_name) {
-        this.arri_airport_name = arri_airport_name;
+    public void setArrivalCity(String arrivalCity) {
+        this.arrivalCity = arrivalCity;
     }
 
-    public LocalDate getDep_date() {
-        return dep_date;
+    public LocalTime getDepartureTime() {
+        return departureTime;
     }
 
-    public void setDep_date(LocalDate dep_date) {
-        this.dep_date = dep_date;
+    public void setDepartureTime(LocalTime departureTime) {
+        this.departureTime = departureTime;
     }
 
-    public LocalDate getArri_date() {
-        return arri_date;
+    public Date getDepartureDate() {
+        return departureDate;
     }
 
-    public void setArri_date(LocalDate arri_date) {
-        this.arri_date = arri_date;
+    public void setDepartureDate(Date departureDate) {
+        this.departureDate = departureDate;
     }
 
-    public Float getTicket_price() {
-        return ticket_price;
+    public Date getArrivalDate() {
+        return arrivalDate;
     }
 
-    public void setTicket_price(Float ticket_price) {
-        this.ticket_price = ticket_price;
+    public void setArrivalDate(Date arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public LocalTime getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(LocalTime arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public String getPnrCode() {
+        return pnrCode;
+    }
+
+    public void setPnrCode(String pnrCode) {
+        this.pnrCode = pnrCode;
+    }
+
+    public Float getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(Float ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 
     public User getUser() {
@@ -164,12 +181,12 @@ public class Flight {
         this.user = user;
     }
 
-    public List<Airport> getAirports() {
-        return airports;
+    public Airport getAirport() {
+        return airport;
     }
 
-    public void setAirports(List<Airport> airports) {
-        this.airports = airports;
+    public void setAirport(Airport airport) {
+        this.airport = airport;
     }
 
     public List<Invoice> getInvoices() {

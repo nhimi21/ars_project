@@ -29,25 +29,30 @@ public class FlightController {
     public String createFlight(@ModelAttribute("flight") Flight flight, Model model, Principal principal, HttpSession session){
         String username = principal.getName();
         model.addAttribute("currentUser", userService.findByUsername(username));
+//        model.addAttribute("airId", (Long)session.getAttribute("airportID"));
         model.addAttribute("airport", this.airportService.findAllAirport());
         model.addAttribute("flights", this.flightService.findAllFlight());
         return "/admin/newFlight";
     }
     @PostMapping("/admin/flight")
-    public String newFlight(@Valid @ModelAttribute("flight")Flight flight, BindingResult result,Principal principal, HttpSession session) {
+    public String newFlight(@Valid @ModelAttribute("flight")Flight flight, BindingResult result,Principal principal, HttpSession session,Model model) {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         if (result.hasErrors()){
             return "/admin/newFlight";
+        } else {
+//            Airport airport = this.airportService.findAirportById((Long) session.getAttribute("airportId"));
+//            flight.setAirport(airport);
+            flight.setUser(user);
+            this.flightService.createFlight(flight);
+            return "redirect:/admin/flight";
         }
-        flight.setUser(user);
-        this.flightService.createFlight(flight);
-        return "redirect:/admin/flight";
     }
     @GetMapping("/admin/flight/{id}/edit")
     public String editFlight(@PathVariable("id") Long id, Model model,Principal principal) {
         String username = principal.getName();
         model.addAttribute("currentUser", userService.findByUsername(username));
+        model.addAttribute("airport", this.airportService.findAllAirport());
         model.addAttribute("flight",this.flightService.findFlightById(id));
         return "/admin/editFlight";
     }
@@ -61,7 +66,7 @@ public class FlightController {
         } else {
             flight.setUser(user);
             this.flightService.createFlight(flight);
-            return "redirect:/new/flight";
+            return "redirect:/admin/flight";
         }
     }
     @DeleteMapping("/admin/flight/{id}/delete")
@@ -69,7 +74,7 @@ public class FlightController {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         this.flightService.deleteFlight(id);
-        return "redirect:/new/flight";
+        return "redirect:/admin/flight";
     }
 
 }

@@ -5,6 +5,7 @@
 body{
     background: linear-gradient(#e3e9ed, #7da6c0, #e3e9ed);
 }
+/*-------header-------------*/
 .nav{
     width: 100%;
     height: auto;
@@ -13,6 +14,15 @@ body{
     display: flex;
     justify-content:space-around;
 }
+/*--------Logo------*/
+.nav h1{
+    color: black;
+    font-family: "Brush Script MT", serif;
+}
+.nav h1 span{
+    color: white;
+}
+/*---------Nav-------*/
 .nav ul{
     display: flex;
     justify-content: space-around;
@@ -30,47 +40,52 @@ body{
 .nav ul li a:hover{
     border-bottom: 2px solid white;
 }
-.nav h1{
-    color: black;
-    font-family: "Brush Script MT", serif;
-}
-.nav h1 span{
-    color: white;
-}
 .nav .logout{
     border-radius: 10px;
     border: 1px solid white;
     background: transparent;
     color: white;
 }
+.all-too{
+    background-image: url("../img/bg2air.jpg");
+    width: auto;
+    height: auto;
+    padding: 25px 25px 35px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px #e3e9ed;
+}
 .txt-first{
-    margin: 15px;
+    padding: 20px;
 }
 .txt-first h1{
     font-family: "Brush Script MT", serif;
+    color: black;
     text-align: center;
-    font-size: 50px;
+    font-size: 55px;
 }
 .txt-first p{
     font-family: "Brush Script MT", serif;
+    color: black;
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
 }
-
-
 .search{
-    margin: 10px;
-    background-color: #e3e9ed;
+    margin: 0 20px ;
+    background-color: rgb(240  246 246 / 80%);
     width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    border-radius: 10px;
+    padding: 25px;
 }
 .search input{
-    border: 1px solid #0c97ce;
+    border: 1px solid orangered;
     background: transparent;
-    padding-right: 10px;
+    margin-top: 5px;
+}
+.search input::placeholder {
+    color: orangered;
 }
 .search form button{
     border-radius: 8px;
@@ -85,10 +100,11 @@ body{
     font-weight: bold;
 }
 .search form svg{
-    color: #0c97ce;
+    color: orangered;
 }
 .dis{
     margin:15px 5px 0 5px;
+
 }
 .dis h1{
     color: black;
@@ -111,18 +127,22 @@ body{
     height: auto;
     border-radius: 5px;
     border: 1px solid white;
+    box-shadow: 1px 1px 4px 4px #e3e9ed;
+    margin: 10px 0;
 }
 .img-box div img{
     width: 380px;
     height: 200px;
-    padding: 10px;
+    padding: 5px 10px 10px;
+    border-radius: 5px;
 }
 .img-box div h2{
+    border-radius: 5px;
     text-align: center;
     font-family: "Brush Script MT", serif;
 }
 .img-box div p{
-    text-align: center;
+    text-align: -moz-center;
     padding: 10px;
     color: black;
 }
@@ -136,29 +156,50 @@ body{
     justify-content: center;
     width: 500px;
     height: auto;
+    margin: 10px 0;
     border-radius: 5px;
     border: 1px solid white;
+    box-shadow: 1px 1px 4px 4px #e3e9ed;
 }
-
 .img-box-1 div img{
     width: 500px;
     height: 300px;
-    padding: 10px;
+    padding: 5px 10px 10px;
+    border-radius: 5px;
 }
 .img-box-1 div h2{
+    border-radius: 5px;
     text-align: center;
     font-family: "Brush Script MT", serif;
 }
 .img-box-1 div p{
     color: black;
-    text-align: center;
+    text-align: -moz-center;
     padding: 10px;
 }
 .img-box div button {
-    margin-left: 40%;
+    margin-left: 42%;
+    margin-bottom: 20px;
+    background-color: #E81932;
+    color: white;
+    font-weight: bold;
 }
 .img-box-1 div button {
-    margin-left: 40%;
+    margin-left: 45%;
+    margin-bottom: 20px;
+    background-color: #E81932;
+    color: white;
+    font-weight: bold;
+}
+.social-media{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 10px 5px;
+    padding: 15px 15px 5px;
+}
+.social-media svg {
+    margin: 5px;
 }
 .footer{
     width: auto;
