@@ -2,7 +2,7 @@ package com.himi.ars_project.models;
 
 import javax.persistence.*;
 import java.util.List;
-
+//comment
 @Entity
 @Table(name="roles")
 public class Role {
