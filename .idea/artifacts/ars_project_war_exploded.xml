@@ -6,7 +6,6 @@
         <exploded>true</exploded>
         <module>ars_project</module>
         <packaging>war</packaging>
-        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -55,7 +54,7 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.6.1" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.6.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.14" />
-          <element id="library" level="project" name="Maven: com.auth0:java-jwt:3.18.2" />
+          <element id="library" level="project" name="Maven: com.auth0:java-jwt:3.18.3" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.1" />

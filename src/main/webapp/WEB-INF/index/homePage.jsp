@@ -15,7 +15,7 @@
         <form id="logoutForm" method="POST" action="/logout">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/user">Client</a></li>
+                <li><a href="/user">Booking</a></li>
                 <li><a href="/admin">Admin</a></li>
                 <li><a><c:out value="${currentUser.firstName}"/></a></li>
                 <li>
