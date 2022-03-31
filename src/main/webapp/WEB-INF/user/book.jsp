@@ -1,14 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="${pageContext.request.contextPath}/css/userstyle.css" rel="stylesheet" type="text/css">
     <style>
-        body {
-            font-family: Arial, serif;
-            font-size: 17px;
-            padding: 8px;
-        }
 
         * {
             box-sizing: border-box;
@@ -57,7 +55,13 @@
             border: 1px solid #ccc;
             border-radius: 3px;
         }
-
+        input[type=number] {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
         label {
             margin-bottom: 10px;
             display: block;
@@ -111,32 +115,46 @@
     <title>Booking</title>
 </head>
 <body>
+<div class="nav">
+    <h1>Air<span>~</span>Line</h1>
+    <form id="logoutForm" method="POST" action="/logout">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/user">Search</a></li>
+            <li><a href="/user/details">Details</a></li>
+            <li><a><c:out value="${currentUser.firstName}"/></a></li>
+            <li>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <input type="submit" value="Log Out" class="logout"/>
+            </li>
+        </ul>
+    </form>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form action="/action_page.php">
+                <form:form action="/user/book" method="POST" modelAttribute="invoice">
 
                     <div class="row">
                         <div class="col-50">
                             <h3>Billing Address</h3>
-                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                            <form:label path="full_name"><i class="fa fa-user"></i> Full Name</form:label>
+                            <form:input type="text" id="fname"  path="full_name" placeholder="John M. Doe"/>
                             <label for="email"><i class="fa fa-envelope"></i> Email</label>
                             <input type="text" id="email" name="email" placeholder="john@example.com">
                             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
                             <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
                             <label for="city"><i class="fa fa-institution"></i> City</label>
                             <input type="text" id="city" name="city" placeholder="New York">
-
                             <div class="row">
                                 <div class="col-50">
-                                    <label for="state">State</label>
-                                    <input type="text" id="state" name="state" placeholder="NY">
+                                    <form:label path="ticketNumber">Invoice</form:label>
+                                    <form:input type="number" path="ticketNumber" placeholder="number"/>
                                 </div>
                                 <div class="col-50">
-                                    <label for="zip">Zip</label>
-                                    <input type="text" id="zip" name="zip" placeholder="10001">
+                                    <form:label  path="numOfPerson">Num Of Person</form:label>
+                                    <form:input type="number" path="numOfPerson" placeholder="1"/>
                                 </div>
                             </div>
                         </div>
@@ -169,8 +187,9 @@
                         </div>
 
                     </div>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="submit" value="Continue" class="btn">
-                </form>
+                </form:form>
             </div>
         </div>
 

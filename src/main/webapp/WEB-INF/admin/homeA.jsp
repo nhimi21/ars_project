@@ -28,7 +28,7 @@
         </form>
     </div>
 
-    <h1 style=" margin-top: 20px">Welcome <c:out value="${currentUser.firstName}"/> <c:out value="${currentUser.lastName}"/></h1>
+    <h1 style=" margin-top: 20px; text-align: center">Welcome <c:out value="${currentUser.firstName}"/> <c:out value="${currentUser.lastName}"/></h1>
 </div>
 </body>
 </html>
